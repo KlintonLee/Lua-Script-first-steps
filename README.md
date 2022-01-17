@@ -111,3 +111,66 @@ x, y = bar()
 ```
 Nota: Também são globas, porém, a palavra reservada `local` funciona para
 funções também.
+
+## O que são Hash Tables?
+É a única estrutura de dados nativa da linguagem, para criarmos listas,
+dicionários, etc. utilizaremos os hash tables. Inclusive em estruturas mais
+complexas são utilizadas as tables.
+
+São formadas por uma chave e um valor (Lista ligada), por exemplo uma lista
+telefonica. De um lado há o nome da pessoal (chave) e do outro o telefone
+(valor).
+
+## Definindo uma table
+Utilizaremos a sintaxe `table = {}` e podemos preenche-la durante a criação ou
+posteriormente, veja o exemplo abaixo:
+```
+table = {
+  key1 = 'value1'
+}
+
+table['key2'] = 'value2'
+table.key3 = 'value3'
+
+table2 = {}
+table.table = table2
+
+print(table)
+  -- table: 0x60000189c840
+print(table.table)
+  -- table: 0x600001834880
+```
+Nota: se pedirmos para o Lua imprimir a variável table, ela exibirá um endereço
+na memória.
+## Acessando os valores
+Basta utilizar a sintaxe acima que definimos as propriedades `key2` e `key3`,
+veja no exemplo abaixo com um comentário do que viria na saída.
+```
+print(table.key1) -- value1
+print(table['key2']) -- value2
+```
+## Table como listas
+Eu posso declarar uma table com uma chave anônima e passar para ela, somente
+valores.
+```
+table = { 'valor1', 'valor2', 'valor3' }
+
+print(table[1], table[2], table[3])
+
+for idx in pairs(table) do
+  print(table[idx])
+end
+
+-- outra alternativa pegando o size é utilizando #table
+for idx = 1, #table do
+  print(table[idx])
+end
+
+-- outra alternativa pegando a chave e o valor é utilizar o ipairs()
+for idx, value in ipairs(table) do
+  print(table[idx], value)
+end
+```
+Obs: Em Lua Script as listas começam no índice `1`, para percorrer por todos os
+índices, basta utilizar a função `pairs()` com o table como parâmetro.
+
